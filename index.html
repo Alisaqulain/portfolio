@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> 👨‍💻Ali Saqulain - Full-Stack Developer</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Particle.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    /* Loading Animation */
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .loader {
+      border: 5px solid #00ff88;
+      border-top: 5px solid transparent;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Navbar */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+      backdrop-filter: blur(10px);
+      transition: background-color 0.5s ease;
+    }
+    .navbar-brand, .nav-link {
+      color: #fff !important;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #00ff88 !important;
+    }
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, #1a1a1a, #003366);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-section h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      animation: fadeInDown 2s ease-in-out;
+    }
+    .hero-section p {
+      font-size: 1.5rem;
+      animation: fadeInUp 2.5s ease-in-out;
+    }
+    .hero-section .btn {
+      animation: fadeIn 3s ease-in-out;
+    }
+    /* About Section */
+    .about-section {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #003366, #1a1a1a);
+    }
+    .about-section h2 {
+      animation: slideInLeft 1.5s ease-in-out;
+    }
+    .about-section p {
+      animation: slideInRight 1.5s ease-in-out;
+    }
+    /* Skills Section */
+    .skills-section {
+      padding: 100px 0;
+      background: #1a1a1a;
+    }
+    .skills-section h2 {
+      animation: fadeIn 2s ease-in-out;
+    }
+    .skill-item {
+      margin-bottom: 20px;
+      animation: slideInUp 1s ease-in-out;
+    }
+    .progress {
+      height: 20px;
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background-color: #00ff88;
+      transition: width 2s ease-in-out;
+    }
+    /* Projects Section */
+    .projects-section {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #1a1a1a, #003366);
+    }
+    .projects-section h2 {
+      animation: fadeIn 2s ease-in-out;
+    }
+    .card {
+      background-color: #333;
+      border: none;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+    }
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    /* Contact Section */
+    .contact-section {
+      padding: 100px 0;
+      background: #1a1a1a;
+    }
+    .contact-section h2 {
+      animation: fadeIn 2s ease-in-out;
+    }
+    .contact-section form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .form-control {
+      background-color: #333;
+      border: none;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+      transform: scale(1.05);
+    }
+    .btn-primary {
+      background-color: #00ff88;
+      border: none;
+      color: #1a1a1a;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #00cc66;
+      transform: translateY(-5px);
+    }
+    /* Footer Section */
+    .footer-section {
+      padding: 50px 0;
+      background: #003366;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .footer-section a {
+      color: #00ff88;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .footer-section a:hover {
+      color: #00cc66;
+      transform: translateY(-5px);
+    }
+    .social-links {
+      margin-top: 20px;
+    }
+    .social-links i {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .social-links i:hover {
+      transform: scale(1.2);
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div id="loading">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Ali Saqulain</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div id="particles-js"></div>
+    <div class="hero-content">
+      <h1>Ali Saqulain</h1>
+      <p>Full-Stack Developer | Building Modern, Responsive, and Scalable Web Applications</p>
+      <a href="#about" class="btn btn-primary btn-lg">Explore More</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="text-center mb-4">About Me</h2>
+      <p class="text-center">Aspiring IT professional with a passion for full-stack web development. Skilled in building modern, responsive, and scalable web applications. Strong in problem-solving, debugging, and collaborating in team environments.</p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <h2 class="text-center mb-4">Skills</h2>
+      <div class="row">
+        <div class="col-md-4 skill-item">
+          <h4>HTML5, CSS3</h4>
+          <div class="progress">
+            <div class="progress-bar" style="width: 95%;">95%</div>
+          </div>
+        </div>
+        <div class="col-md-4 skill-item">
+          <h4>JavaScript</h4>
+          <div class="progress">
+            <div class="progress-bar" style="width: 90%;">90%</div>
+          </div>
+        </div>
+        <div class="col-md-4 skill-item">
+          <h4>ReactJS, Tailwind CSS</h4>
+          <div class="progress">
+            <div class="progress-bar" style="width: 85%;">85%</div>
+          </div>
+        </div>
+        <div class="col-md-4 skill-item">
+          <h4>Bootstrap</h4>
+          <div class="progress">
+            <div class="progress-bar" style="width: 90%;">90%</div>
+          </div>
+        </div>
+        <div class="col-md-4 skill-item">
+          <h4>Node.js, Express.js</h4>
+          <div class="progress">
+            <div class="progress-bar" style="width: 88%;">88%</div>
+          </div>
+        </div>
+        <div class="col-md-4 skill-item">
+          <h4>MySQL, MongoDB</h4>
+          <div class="progress">
+            <div class="progress-bar" style="width: 85%;">85%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Section -->
+  <section id="experience" class="experience-section">
+    <div class="container">
+      <h2 class="text-center mb-4">Work Experience</h2>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Computer Programming Instructor</h5>
+          <h6 class="card-subtitle mb-2 text-muted" style="color: white !important;">Yash Computer Education Center | August 2023 - Present</h6>
+          <p class="card-text">
+            • Taught programming languages like HTML5, CSS3, JavaScript, C, C++.<br>
+            • Conducted hands-on coding exercises and project-based learning.<br>
+            • Guided students in debugging and improving coding skills.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="text-center mb-4">Projects</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Airbnb-like Web Application</h5>
+              <p class="card-text">
+                • Developed a full-stack web application for user authentication and listing management.<br>
+                • Built back-end API with Node.js and Express; integrated cloud storage for media.<br>
+                • Designed responsive front-end interfaces with Bootstrap for a seamless user experience.
+              </p>
+              <a href="https://tinyurl.com/yy44src2" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="education-section">
+    <div class="container">
+      <h2 class="text-center mb-4">Education</h2>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Bachelor of Computer Application</h5>
+          <h6 class="card-subtitle mb-2 text-muted" style="color: white !important;">Muzaffarnagar | August 2023 -Present</h6>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Intermediate</h5>
+          <h6 class="card-subtitle mb-2 text-muted" style="color: white !important;">Muzaffarnagar | March 2022</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2 class="text-center mb-4">Contact Me</h2>
+      <form id="serviceForm" action="https://formsubmit.co/zaidiali087@gmail.com" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-section">
+    <div class="container">
+      <p>&copy; 2025 Ali Saqulain. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/Alisaqulain"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/syed-ali-zaidi-7404a8287"><i class="fab fa-linkedin"></i></a>
+   
+        <a href="https://www.instagram.com/syed__ali_zaidi_110/?igsh=MThxNXF5NTRzOWY1ZQ%3D%3D#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Particle.js Initialization -->
+  <script>
+    particlesJS.load('particles-js', 'particles.json', function() {
+      console.log('Particles.js loaded!');
+    });
+  </script>
+  <!-- Loading Animation Script -->
+  <script>
+    window.addEventListener('load', function() {
+      const loading = document.getElementById('loading');
+      loading.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
